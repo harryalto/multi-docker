@@ -3,10 +3,10 @@ services:
   - docker
 
 before_install:
-  - docker build -t harryalto/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t stephengrider/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run harryalto/react-test npm test -- --coverage
+  - docker run stephengrider/react-test npm test -- --coverage
 
 after_success:
   - docker build -t harryalto/multi-client ./client
@@ -23,7 +23,7 @@ after_success:
 
 deploy:
   provider: elasticbeanstalk
-  region: us-west-1
+  region: us-east-1
   app: multi-docker
   env: MultiDocker-env
   bucket_name: elasticbeanstalk-us-west-1-306476627547
